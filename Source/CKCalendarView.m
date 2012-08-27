@@ -22,6 +22,7 @@
 
 #define BUTTON_MARGIN 4
 #define CALENDAR_MARGIN 5
+#define BUTTON_WIDTH 40
 #define TOP_HEIGHT 44
 #define DAYS_HEADER_HEIGHT 22
 #define DEFAULT_CELL_WIDTH 43
@@ -84,6 +85,11 @@
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UIButton *prevButton;
 @property(nonatomic, strong) UIButton *nextButton;
+
+@property(nonatomic, strong) UIButton *prevYearButton;
+@property(nonatomic, strong) UIButton *nextYearButton;
+
+
 @property(nonatomic, strong) UIView *calendarContainer;
 @property(nonatomic, strong) GradientView *daysHeader;
 @property(nonatomic, strong) NSArray *dayOfWeekLabels;
@@ -129,6 +135,7 @@
 @synthesize minimumDate = _minimumDate;
 @synthesize maximumDate = _maximumDate;
 
+@synthesize prevYearButton,nextYearButton;
 
 - (id)init {
     return [self initWithStartDay:startSunday];
@@ -173,18 +180,34 @@
         self.titleLabel = titleLabel;
 
         UIButton *prevButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [prevButton setImage:[UIImage imageNamed:@"left_arrow.png"] forState:UIControlStateNormal];
+        [prevButton setImage:[UIImage imageNamed:@"left_m_arrow.png"] forState:UIControlStateNormal];
         prevButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
         [prevButton addTarget:self action:@selector(moveCalendarToPreviousMonth) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:prevButton];
         self.prevButton = prevButton;
+        
+        
+        UIButton *prevYButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [prevYButton setImage:[UIImage imageNamed:@"left_arrow.png"] forState:UIControlStateNormal];
+        prevYButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
+        [prevYButton addTarget:self action:@selector(moveCalendarToPreviousYear) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:prevYButton];
+        self.prevYearButton = prevYButton;
 
         UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [nextButton setImage:[UIImage imageNamed:@"right_arrow.png"] forState:UIControlStateNormal];
+        [nextButton setImage:[UIImage imageNamed:@"right_m_arrow.png"] forState:UIControlStateNormal];
         nextButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
         [nextButton addTarget:self action:@selector(moveCalendarToNextMonth) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:nextButton];
         self.nextButton = nextButton;
+        
+        
+        UIButton *nextYButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [nextYButton setImage:[UIImage imageNamed:@"right_arrow.png"] forState:UIControlStateNormal];
+        nextYButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
+        [nextYButton addTarget:self action:@selector(moveCalendarToNextYear) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:nextYButton];
+        self.nextYearButton = nextYButton;
 
         // THE CALENDAR ITSELF
         UIView *calendarContainer = [[UIView alloc] initWithFrame:CGRectZero];
@@ -253,9 +276,12 @@
     self.highlight.frame = CGRectMake(1, 1, self.bounds.size.width - 2, 1);
 
     self.titleLabel.frame = CGRectMake(0, 0, self.bounds.size.width, TOP_HEIGHT);
-    self.prevButton.frame = CGRectMake(BUTTON_MARGIN, BUTTON_MARGIN, 48, 38);
-    self.nextButton.frame = CGRectMake(self.bounds.size.width - 48 - BUTTON_MARGIN, BUTTON_MARGIN, 48, 38);
+    self.prevButton.frame = CGRectMake(BUTTON_MARGIN, BUTTON_MARGIN, BUTTON_WIDTH, 38);
+    self.prevYearButton.frame = CGRectMake(BUTTON_MARGIN*2+self.prevButton.frame.size.width, BUTTON_MARGIN, BUTTON_WIDTH, 38);
+    self.nextButton.frame = CGRectMake(self.bounds.size.width - BUTTON_WIDTH - BUTTON_MARGIN, BUTTON_MARGIN, BUTTON_WIDTH, 38);
+    self.nextYearButton.frame = CGRectMake(self.nextButton.frame.origin.x - (BUTTON_MARGIN + BUTTON_WIDTH), BUTTON_MARGIN, BUTTON_WIDTH, 38);
 
+    
     self.calendarContainer.frame = CGRectMake(CALENDAR_MARGIN, CGRectGetMaxY(self.titleLabel.frame), containerWidth, containerHeight);
     self.daysHeader.frame = CGRectMake(0, 0, self.calendarContainer.frame.size.width, DAYS_HEADER_HEIGHT);
 
@@ -352,11 +378,24 @@
     self.monthShowing = [self.calendar dateByAddingComponents:comps toDate:self.monthShowing options:0];
 }
 
+- (void) moveCalendarToNextYear {
+    NSDateComponents* comps = [[NSDateComponents alloc] init];
+    [comps setYear:1];
+    self.monthShowing = [self.calendar dateByAddingComponents:comps toDate:self.monthShowing options:0];
+}
+
 - (void)moveCalendarToPreviousMonth {
     NSDateComponents* comps = [[NSDateComponents alloc] init];
     [comps setMonth:-1];
     self.monthShowing = [self.calendar dateByAddingComponents:comps toDate:self.monthShowing options:0];
 }
+
+- (void) moveCalendarToPreviousYear {
+    NSDateComponents* comps = [[NSDateComponents alloc] init];
+    [comps setYear:-1];
+    self.monthShowing = [self.calendar dateByAddingComponents:comps toDate:self.monthShowing options:0];
+}
+
 
 - (void)dateButtonPressed:(id)sender {
     DateButton *dateButton = sender;
