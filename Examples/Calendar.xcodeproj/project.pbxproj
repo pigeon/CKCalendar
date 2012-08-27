@@ -24,6 +24,7 @@
 		EE7FF47815EB7A8C00F9A404 /* right_m_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7FF47615EB7A8C00F9A404 /* right_m_arrow@2x.png */; };
 		EE7FF47C15EB7B9F00F9A404 /* left_m_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7FF47A15EB7B9F00F9A404 /* left_m_arrow.png */; };
 		EE7FF47D15EB7B9F00F9A404 /* right_m_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7FF47B15EB7B9F00F9A404 /* right_m_arrow.png */; };
+		EE7FF48015EB8C6E00F9A404 /* DGCalendarRangePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7FF47F15EB8C6E00F9A404 /* DGCalendarRangePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		EE7FF47615EB7A8C00F9A404 /* right_m_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_m_arrow@2x.png"; sourceTree = "<group>"; };
 		EE7FF47A15EB7B9F00F9A404 /* left_m_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_m_arrow.png; sourceTree = "<group>"; };
 		EE7FF47B15EB7B9F00F9A404 /* right_m_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_m_arrow.png; sourceTree = "<group>"; };
+		EE7FF47E15EB8C6E00F9A404 /* DGCalendarRangePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGCalendarRangePicker.h; sourceTree = "<group>"; };
+		EE7FF47F15EB8C6E00F9A404 /* DGCalendarRangePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGCalendarRangePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				1D2391395A8710F3E85A63 /* CKAppDelegate.h */,
 				1D2391395A8710F3E85A5B /* Supporting Files */,
 				1D2391395A8710F3E85A86 /* resources */,
+				EE7FF47E15EB8C6E00F9A404 /* DGCalendarRangePicker.h */,
+				EE7FF47F15EB8C6E00F9A404 /* DGCalendarRangePicker.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				1D2391395A8710F3E85A65 /* CKAppDelegate.m in Sources */,
 				1D2391395A8710F3E85A68 /* CKViewController.m in Sources */,
 				1D2391395A8710F3E85A85 /* CKCalendarView.m in Sources */,
+				EE7FF48015EB8C6E00F9A404 /* DGCalendarRangePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
