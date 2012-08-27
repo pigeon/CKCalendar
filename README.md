@@ -1,33 +1,32 @@
-CKCalendar
+DGCalendarRangePicker
 ==========
 
-CKCalendar is a sleek, easily customizable calendar control for iOS. Simply add the header, implementation, and resource files to your project and link against it's framework dependencies: QuartzCore and CoreGraphics. 
+DGCalendarRangePicker is a calendar control for iPad which allows to select a date range. The control uses [CKCalendar control](https://github.com/jaykz52/CKCalendar)
+  
+![CKCalendar screenshot](https://img.skitch.com/20120827-ryyft5dttrujtjf5m8mb9r2qx1.jpg)
 
-![CKCalendar screenshot](http://cloud.github.com/downloads/jaykz52/CKCalendar/CKCalendar.png)
 
-The default calendar design is courtesy of [John Anderson](http://twitter.com/jrileyd). Thanks John!
-
-## Interacting with CKCalendar
+## Interacting with DGCalendarRangePicker
 CKCalendar provides delegate callbacks to interact with the calendar in the way you would expect:
 
 ``` objc
-- (void)someMethod {
-  CKCalendarView *calendar = [[CKCalendarView alloc] init];
-  [self.view addSubview:calendar];
-  calendar.delegate = self;
-}
+        DGCalendarRangePicker* rangePicker = [[DGCalendarRangePicker alloc] initWithFrame:CGRectMake(20, 0, 630, 340)];
+        rangePicker.delegate = self;
+        [self.view addSubview:rangePicker];
 
 // snip...
 
-- (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date {
-  // show the user the date they selected  
-  self.dateLabel.text = [date description];
+
+-(void) calendarRangePicker:(DGCalendarRangePicker*) calendarRangePicker
+                  startDate:(NSDate*) startDate
+                    endDate:(NSDate*) endDate
+{
+    NSLog(@"%@ - %@",[self.dateFormatter stringFromDate:startDate],[self.dateFormatter stringFromDate:endDate]);
+    self.dateLabel.text = [NSString stringWithFormat:@"%@ - %@",[self.dateFormatter stringFromDate:startDate],[self.dateFormatter stringFromDate:endDate]];
 }
 
 ```
 
-## Customizing
-The calendar was written to be easily styled so that you can make it feel seamless in your app. You can customize the fonts, text colors, and background colors of nearly every element. You can also configure what day of the week the calendar should start on. The calendar allows you to set optional minimum and/or maximum selectable dates (which are also stylable). If you still have a feature not yet met, add it! The code is readable and quite extendable at this point. Enjoy!
 
 ## License (MIT)
 Copyright (c) 2012 Jason Kozemczak
