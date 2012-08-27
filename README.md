@@ -10,12 +10,11 @@ DGCalendarRangePicker is a calendar control for iPad which allows to select a da
 CKCalendar provides delegate callbacks to interact with the calendar in the way you would expect:
 
 ``` objc
-        DGCalendarRangePicker* rangePicker = [[DGCalendarRangePicker alloc] initWithFrame:CGRectMake(20, 0, 630, 340)];
-        rangePicker.delegate = self;
-        [self.view addSubview:rangePicker];
+DGCalendarRangePicker* rangePicker = [[DGCalendarRangePicker alloc] initWithFrame:CGRectMake(20, 0, 630, 340)];
+rangePicker.delegate = self;
+[self.view addSubview:rangePicker];
 
 // snip...
-
 
 -(void) calendarRangePicker:(DGCalendarRangePicker*) calendarRangePicker
                   startDate:(NSDate*) startDate
